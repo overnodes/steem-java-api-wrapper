@@ -205,10 +205,15 @@ public class MarketHistoryApiIT extends BaseIT {
     @Test
     @Category({ IntegrationTest.class })
     public void testGetMarketHistory() throws SteemCommunicationException, SteemResponseException {
+<<<<<<< HEAD:core/src/test/java/eu/bittrade/libs/steemj/plugins/apis/market/history/MarketHistoryApiIT.java
         List<Bucket> marketHistory = MarketHistoryApi
                 .getMarketHistory(COMMUNICATION_HANDLER, new GetMarketHistoryArgs(UInteger.valueOf(3600),
                         new TimePointSec(1504885989), new TimePointSec(System.currentTimeMillis())))
                 .getBuckets();
+=======
+        List<Bucket> marketHistory = MarketHistoryApi.getMarketHistory(COMMUNICATION_HANDLER, 3600,
+                new TimePointSec(System.currentTimeMillis()-1000l*60l*60l*24l*7l), new TimePointSec(System.currentTimeMillis()));
+>>>>>>> 0.4.x:core/src/test/java/eu/bittrade/libs/steemj/apis/market/history/MarketHistoryApiIT.java
 
         assertThat(marketHistory.size(), greaterThan(0));
         assertThat(marketHistory.get(0).getCloseSbd(), greaterThan(0L));

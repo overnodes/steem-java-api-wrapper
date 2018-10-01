@@ -16,13 +16,22 @@
  */
 package eu.bittrade.libs.steemj.plugins.apis.database.models;
 
+<<<<<<< HEAD:core/src/main/java/eu/bittrade/libs/steemj/plugins/apis/database/models/Comment.java
 import java.util.List;
+=======
+import java.math.BigInteger;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+>>>>>>> 0.4.x:core/src/main/java/eu/bittrade/libs/steemj/apis/database/models/state/Comment.java
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.joou.UInteger;
 import org.joou.ULong;
 import org.joou.UShort;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import eu.bittrade.libs.steemj.base.models.BeneficiaryRouteType;
@@ -37,6 +46,17 @@ import eu.bittrade.libs.steemj.protocol.Asset;
  * @author <a href="http://steemit.com/@dez1337">dez1337</a>
  */
 public class Comment {
+	
+	private final Map<String, Object> _properties = new HashMap<>();
+	@JsonAnySetter
+	public void setProperty(String key, Object value) {
+		this._properties.put(key, value);
+	}
+	@JsonAnyGetter
+	public Map<String, Object> getProperties() {
+		return _properties;
+	}
+	
     // Original type is comment_id_type.
     private long id;
     private String category;

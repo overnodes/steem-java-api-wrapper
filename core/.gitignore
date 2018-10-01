@@ -1,1 +1,5 @@
 /bin/
+/build/
+/.gradle/
+/tmp/
+/reports/*.odt

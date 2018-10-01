@@ -18,6 +18,8 @@ package eu.bittrade.libs.steemj.plugins.apis.database.models;
 
 import java.math.BigInteger;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -27,18 +29,33 @@ import eu.bittrade.crypto.core.Sha256Hash;
 import eu.bittrade.libs.steemj.base.models.ChainProperties;
 import eu.bittrade.libs.steemj.base.models.Version;
 import eu.bittrade.libs.steemj.enums.WitnessScheduleType;
+<<<<<<< HEAD:core/src/main/java/eu/bittrade/libs/steemj/plugins/apis/database/models/Witness.java
 import eu.bittrade.libs.steemj.fc.TimePointSec;
 import eu.bittrade.libs.steemj.protocol.AccountName;
 import eu.bittrade.libs.steemj.protocol.HardforkVersion;
 import eu.bittrade.libs.steemj.protocol.Price;
 import eu.bittrade.libs.steemj.protocol.PublicKey;
+=======
+import eu.bittrade.libs.steemj.interfaces.HasJsonAnyGetterSetter;
+>>>>>>> 0.4.x:core/src/main/java/eu/bittrade/libs/steemj/base/models/Witness.java
 
 /**
  * This class represents a Steem "witness_api_object" object.
  * 
  * @author <a href="http://steemit.com/@dez1337">dez1337</a>
  */
-public class Witness {
+public class Witness implements HasJsonAnyGetterSetter {
+	private final Map<String, Object> _anyGetterSetterMap = new HashMap<>();
+	@Override
+	public Map<String, Object> _getter() {
+		return _anyGetterSetterMap;
+	}
+
+	@Override
+	public void _setter(String key, Object value) {
+		_getter().put(key, value);
+	}
+
     private int id;
     private AccountName owner;
     private TimePointSec created;

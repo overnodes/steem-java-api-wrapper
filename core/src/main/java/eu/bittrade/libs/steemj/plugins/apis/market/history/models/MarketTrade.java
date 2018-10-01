@@ -16,12 +16,21 @@
  */
 package eu.bittrade.libs.steemj.plugins.apis.market.history.models;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+<<<<<<< HEAD:core/src/main/java/eu/bittrade/libs/steemj/plugins/apis/market/history/models/MarketTrade.java
 import eu.bittrade.libs.steemj.fc.TimePointSec;
 import eu.bittrade.libs.steemj.protocol.Asset;
+=======
+import eu.bittrade.libs.steemj.base.models.Asset;
+import eu.bittrade.libs.steemj.base.models.TimePointSec;
+import eu.bittrade.libs.steemj.interfaces.HasJsonAnyGetterSetter;
+>>>>>>> 0.4.x:core/src/main/java/eu/bittrade/libs/steemj/apis/market/history/model/MarketTrade.java
 
 /**
  * This class represents a Steem "market_trade" object of the
@@ -29,8 +38,23 @@ import eu.bittrade.libs.steemj.protocol.Asset;
  * 
  * @author <a href="http://steemit.com/@dez1337">dez1337</a>
  */
+<<<<<<< HEAD:core/src/main/java/eu/bittrade/libs/steemj/plugins/apis/market/history/models/MarketTrade.java
 public class MarketTrade {
     @JsonProperty("date")
+=======
+public class MarketTrade implements HasJsonAnyGetterSetter {
+	private final Map<String, Object> _anyGetterSetterMap = new HashMap<>();
+	@Override
+	public Map<String, Object> _getter() {
+		return _anyGetterSetterMap;
+	}
+
+	@Override
+	public void _setter(String key, Object value) {
+		_getter().put(key, value);
+	}
+
+>>>>>>> 0.4.x:core/src/main/java/eu/bittrade/libs/steemj/apis/market/history/model/MarketTrade.java
     private TimePointSec date;
     @JsonProperty("current_pays")
     private Asset currentPays;

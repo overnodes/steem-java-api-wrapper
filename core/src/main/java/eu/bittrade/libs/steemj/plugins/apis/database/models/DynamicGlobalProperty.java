@@ -17,23 +17,40 @@
 package eu.bittrade.libs.steemj.plugins.apis.database.models;
 
 import java.math.BigInteger;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+<<<<<<< HEAD:core/src/main/java/eu/bittrade/libs/steemj/plugins/apis/database/models/DynamicGlobalProperty.java
 import eu.bittrade.libs.steemj.base.models.BlockId;
 import eu.bittrade.libs.steemj.fc.TimePointSec;
 import eu.bittrade.libs.steemj.plugins.apis.condenser.models.ExtendedDynamicGlobalProperties;
 import eu.bittrade.libs.steemj.protocol.AccountName;
 import eu.bittrade.libs.steemj.protocol.Asset;
+=======
+import eu.bittrade.libs.steemj.interfaces.HasJsonAnyGetterSetter;
+>>>>>>> 0.4.x:core/src/main/java/eu/bittrade/libs/steemj/base/models/DynamicGlobalProperty.java
 
 /**
  * This class represents the Steem "dynamic_global_property_api_obj" object.
  * 
  * @author <a href="http://steemit.com/@dez1337">dez1337</a>
  */
-public class DynamicGlobalProperty {
+public class DynamicGlobalProperty implements HasJsonAnyGetterSetter {
+	private final Map<String, Object> _anyGetterSetterMap = new HashMap<>();
+	@Override
+	public Map<String, Object> _getter() {
+		return _anyGetterSetterMap;
+	}
+
+	@Override
+	public void _setter(String key, Object value) {
+		_getter().put(key, value);
+	}
+
     // Original type is id_type which is a uint16_t so we use int here.
     private int id;
     // Original type is uint32_t so we use long here.

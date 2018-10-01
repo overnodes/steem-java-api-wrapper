@@ -16,20 +16,39 @@
  */
 package eu.bittrade.libs.steemj.plugins.apis.follow.models;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import eu.bittrade.libs.steemj.base.models.Permlink;
+<<<<<<< HEAD:core/src/main/java/eu/bittrade/libs/steemj/plugins/apis/follow/models/BlogEntry.java
 import eu.bittrade.libs.steemj.fc.TimePointSec;
 import eu.bittrade.libs.steemj.protocol.AccountName;
+=======
+import eu.bittrade.libs.steemj.base.models.TimePointSec;
+import eu.bittrade.libs.steemj.interfaces.HasJsonAnyGetterSetter;
+>>>>>>> 0.4.x:core/src/main/java/eu/bittrade/libs/steemj/apis/follow/model/BlogEntry.java
 
 /**
  * This class represents a Steem "blog_entry" object.
  * 
  * @author <a href="http://steemit.com/@dez1337">dez1337</a>
  */
-public class BlogEntry {
+public class BlogEntry implements HasJsonAnyGetterSetter {
+	private final Map<String, Object> _anyGetterSetterMap = new HashMap<>();
+	@Override
+	public Map<String, Object> _getter() {
+		return _anyGetterSetterMap;
+	}
+
+	@Override
+	public void _setter(String key, Object value) {
+		_getter().put(key, value);
+	}
+
     private AccountName author;
     private Permlink permlink;
     private AccountName blog;

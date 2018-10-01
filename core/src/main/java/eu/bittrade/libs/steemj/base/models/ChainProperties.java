@@ -19,6 +19,8 @@ package eu.bittrade.libs.steemj.base.models;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.security.InvalidParameterException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -27,7 +29,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import eu.bittrade.libs.steemj.exceptions.SteemInvalidTransactionException;
 import eu.bittrade.libs.steemj.interfaces.ByteTransformable;
+<<<<<<< HEAD
 import eu.bittrade.libs.steemj.protocol.Asset;
+=======
+import eu.bittrade.libs.steemj.interfaces.HasJsonAnyGetterSetter;
+>>>>>>> 0.4.x
 import eu.bittrade.libs.steemj.util.SteemJUtils;
 
 /**
@@ -35,7 +41,18 @@ import eu.bittrade.libs.steemj.util.SteemJUtils;
  * 
  * @author <a href="http://steemit.com/@dez1337">dez1337</a>
  */
-public class ChainProperties implements ByteTransformable {
+public class ChainProperties implements ByteTransformable , HasJsonAnyGetterSetter {
+	private final Map<String, Object> _anyGetterSetterMap = new HashMap<>();
+	@Override
+	public Map<String, Object> _getter() {
+		return _anyGetterSetterMap;
+	}
+
+	@Override
+	public void _setter(String key, Object value) {
+		_getter().put(key, value);
+	}
+
     @JsonProperty("account_creation_fee")
     private Asset accountCreationFee;
     // Original type is uint32_t so we use long here.

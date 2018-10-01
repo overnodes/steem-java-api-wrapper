@@ -16,19 +16,37 @@
  */
 package eu.bittrade.libs.steemj.base.models;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+<<<<<<< HEAD
 import eu.bittrade.libs.steemj.fc.TimePointSec;
 import eu.bittrade.libs.steemj.protocol.HardforkVersion;
+=======
+import eu.bittrade.libs.steemj.interfaces.HasJsonAnyGetterSetter;
+>>>>>>> 0.4.x
 
 /**
  * This object represents the Steem "scheduled_hardfork" object.
  * 
  * @author <a href="http://steemit.com/@dez1337">dez1337</a>
  */
-public class ScheduledHardfork {
+public class ScheduledHardfork implements HasJsonAnyGetterSetter {
+	private final Map<String, Object> _anyGetterSetterMap = new HashMap<>();
+	@Override
+	public Map<String, Object> _getter() {
+		return _anyGetterSetterMap;
+	}
+
+	@Override
+	public void _setter(String key, Object value) {
+		_getter().put(key, value);
+	}
+
     @JsonProperty("hf_version")
     private HardforkVersion hardforkVersion;
     @JsonProperty("live_time")

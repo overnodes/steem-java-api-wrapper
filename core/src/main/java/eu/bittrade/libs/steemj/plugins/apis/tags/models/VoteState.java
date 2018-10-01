@@ -1,3 +1,4 @@
+<<<<<<< HEAD:core/src/main/java/eu/bittrade/libs/steemj/plugins/apis/tags/models/VoteState.java
 /*
  *     This file is part of SteemJ (formerly known as 'Steem-Java-Api-Wrapper')
  * 
@@ -15,6 +16,13 @@
  *     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 package eu.bittrade.libs.steemj.plugins.apis.tags.models;
+=======
+package eu.bittrade.libs.steemj.base.models;
+
+import java.math.BigInteger;
+import java.util.HashMap;
+import java.util.Map;
+>>>>>>> 0.4.x:core/src/main/java/eu/bittrade/libs/steemj/base/models/VoteState.java
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.joou.ULong;
@@ -22,12 +30,25 @@ import org.joou.ULong;
 import eu.bittrade.libs.steemj.fc.TimePointSec;
 import eu.bittrade.libs.steemj.protocol.AccountName;
 
+import eu.bittrade.libs.steemj.interfaces.HasJsonAnyGetterSetter;
+
 /**
  * This class represents the Steem data type "vote_state".
  * 
  * @author <a href="http://Steemit.com/@dez1337">dez1337</a>
  */
-public class VoteState {
+public class VoteState implements HasJsonAnyGetterSetter {
+	private final Map<String, Object> _anyGetterSetterMap = new HashMap<>();
+	@Override
+	public Map<String, Object> _getter() {
+		return _anyGetterSetterMap;
+	}
+
+	@Override
+	public void _setter(String key, Object value) {
+		_getter().put(key, value);
+	}
+
     private AccountName voter;
     // Original type is uint64_t.
     private ULong weight;

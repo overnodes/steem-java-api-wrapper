@@ -16,11 +16,19 @@
  */
 package eu.bittrade.libs.steemj.plugins.apis.network.broadcast.models;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+<<<<<<< HEAD:core/src/main/java/eu/bittrade/libs/steemj/plugins/apis/network/broadcast/models/BroadcastTransactionSynchronousReturn.java
 import eu.bittrade.libs.steemj.protocol.TransactionId;
+=======
+import eu.bittrade.libs.steemj.base.models.TransactionId;
+import eu.bittrade.libs.steemj.interfaces.HasJsonAnyGetterSetter;
+>>>>>>> 0.4.x:core/src/main/java/eu/bittrade/libs/steemj/plugins/network/broadcast/model/BroadcastTransactionSynchronousReturn.java
 
 /**
  * This class represents a Steem "broadcast_transaction_synchronous_return"
@@ -28,7 +36,18 @@ import eu.bittrade.libs.steemj.protocol.TransactionId;
  * 
  * @author <a href="http://steemit.com/@dez1337">dez1337</a>
  */
-public class BroadcastTransactionSynchronousReturn {
+public class BroadcastTransactionSynchronousReturn implements HasJsonAnyGetterSetter {
+	private final Map<String, Object> _anyGetterSetterMap = new HashMap<>();
+	@Override
+	public Map<String, Object> _getter() {
+		return _anyGetterSetterMap;
+	}
+
+	@Override
+	public void _setter(String key, Object value) {
+		_getter().put(key, value);
+	}
+
     @JsonProperty("id")
     private TransactionId id;
     @JsonProperty("block_num")

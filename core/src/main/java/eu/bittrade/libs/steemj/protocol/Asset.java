@@ -18,8 +18,13 @@ package eu.bittrade.libs.steemj.protocol;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+<<<<<<< HEAD:core/src/main/java/eu/bittrade/libs/steemj/protocol/Asset.java
 import java.math.BigDecimal;
 import java.security.InvalidParameterException;
+=======
+import java.util.HashMap;
+import java.util.Map;
+>>>>>>> 0.4.x:core/src/main/java/eu/bittrade/libs/steemj/base/models/Asset.java
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -31,7 +36,11 @@ import eu.bittrade.libs.steemj.base.models.serializer.AssetSerializer;
 import eu.bittrade.libs.steemj.configuration.SteemJConfig;
 import eu.bittrade.libs.steemj.exceptions.SteemInvalidTransactionException;
 import eu.bittrade.libs.steemj.interfaces.ByteTransformable;
+<<<<<<< HEAD:core/src/main/java/eu/bittrade/libs/steemj/protocol/Asset.java
 import eu.bittrade.libs.steemj.protocol.enums.AssetSymbolType;
+=======
+import eu.bittrade.libs.steemj.interfaces.HasJsonAnyGetterSetter;
+>>>>>>> 0.4.x:core/src/main/java/eu/bittrade/libs/steemj/base/models/Asset.java
 import eu.bittrade.libs.steemj.util.SteemJUtils;
 
 /**
@@ -43,7 +52,18 @@ import eu.bittrade.libs.steemj.util.SteemJUtils;
  */
 @JsonDeserialize(using = AssetDeserializer.class)
 @JsonSerialize(using = AssetSerializer.class)
-public class Asset implements ByteTransformable {
+public class Asset implements ByteTransformable , HasJsonAnyGetterSetter {
+	private final Map<String, Object> _anyGetterSetterMap = new HashMap<>();
+	@Override
+	public Map<String, Object> _getter() {
+		return _anyGetterSetterMap;
+	}
+
+	@Override
+	public void _setter(String key, Object value) {
+		_getter().put(key, value);
+	}
+
     // Original type is "share_type" which is a "safe<int64_t>".
     private long amount;
     // Type us uint64_t in the original code.
