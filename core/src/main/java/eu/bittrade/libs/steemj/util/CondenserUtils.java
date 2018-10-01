@@ -1,3 +1,19 @@
+/*
+ *     This file is part of SteemJ (formerly known as 'Steem-Java-Api-Wrapper')
+ * 
+ *     SteemJ is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU General Public License as published by
+ *     the Free Software Foundation, either version 3 of the License, or
+ *     (at your option) any later version.
+ * 
+ *     SteemJ is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU General Public License for more details.
+ * 
+ *     You should have received a copy of the GNU General Public License
+ *     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package eu.bittrade.libs.steemj.util;
 
 import java.util.ArrayList;
@@ -17,6 +33,135 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @author <a href="http://steemit.com/@dez1337">dez1337</a>
  */
 public class CondenserUtils {
+<<<<<<< HEAD
+    private static final String TAGS_FIELD_NAME = "tags";
+    private static final String USERS_FIELD_NAME = "users";
+    private static final String IMAGES_FIELD_NAME = "images";
+    private static final String LINKS_FIELD_NAME = "links";
+    private static final String APP_FIELD_NAME = "app";
+    private static final String FORMAT_FIELD_NAME = "format";
+
+    /** Add a private constructor to hide the implicit public one. */
+    private CondenserUtils() {
+    }
+
+    /**
+     * Get a list of links that the given <code>content</code> contains.
+     * 
+     * @param content
+     *            The content to extract the links from.
+     * @return A list of links.
+     */
+    public static List<String> extractLinksFromContent(String content) {
+        List<String> containedUrls = new ArrayList<>();
+        Pattern pattern = Pattern.compile(
+                "\\b((https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|])",
+                Pattern.CASE_INSENSITIVE);
+        Matcher urlMatcher = pattern.matcher(content);
+
+        while (urlMatcher.find()) {
+            containedUrls.add(content.substring(urlMatcher.start(0), urlMatcher.end(0)));
+        }
+
+        return containedUrls;
+    }
+
+    /**
+     * Get a list of user names that the given <code>content</code> contains.
+     * 
+     * @param content
+     *            The content to extract the user names from.
+     * @return A list of user names.
+     */
+    public static List<String> extractUsersFromContent(String content) {
+        List<String> containedUrls = new ArrayList<>();
+        Pattern pattern = Pattern.compile("(@{1})([a-z0-9\\.-]{3,16})", Pattern.CASE_INSENSITIVE);
+        Matcher urlMatcher = pattern.matcher(content);
+
+        while (urlMatcher.find()) {
+            containedUrls.add(content.substring(urlMatcher.start(2), urlMatcher.end(2)));
+        }
+
+        return containedUrls;
+    }
+
+    /**
+     * Use this method to generate the json metadata for new comments or posts
+     * required by Condenser.
+     * 
+     * @param content
+     *            The body of the comment or post.
+     * @param tags
+     *            The used tags for this comment or post.
+     * @param app
+     *            The app name that publishes this comment or post.
+     * @param format
+     *            The format used by the comment or post.
+     * @return The json metadata in its String presentation.
+     */
+    public static String generateSteemitMetadata(String content, String[] tags, String app, String format) {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        ObjectNode jsonMetadata = objectMapper.createObjectNode();
+        ArrayNode tagArray = jsonMetadata.arrayNode();
+        for (String tag : tags) {
+            tagArray.add(tag);
+        }
+        jsonMetadata.set(TAGS_FIELD_NAME, tagArray);
+
+        ArrayNode userArray = jsonMetadata.arrayNode();
+        List<String> users = extractUsersFromContent(content);
+        for (String user : users) {
+            userArray.add(user);
+        }
+
+        if (userArray.size() > 0) {
+            jsonMetadata.set(USERS_FIELD_NAME, userArray);
+        }
+
+        ArrayNode imageArray = jsonMetadata.arrayNode();
+        ArrayNode linksArray = jsonMetadata.arrayNode();
+        List<String> links = extractLinksFromContent(content);
+
+        for (String link : links) {
+            if (link.matches("/(https?:\\/\\/.*\\.(?:png|jpg))/i")) {
+                imageArray.add(link);
+            } else {
+                linksArray.add(link);
+            }
+        }
+
+        if (imageArray.size() > 0) {
+            jsonMetadata.set(IMAGES_FIELD_NAME, imageArray);
+        }
+
+        if (linksArray.size() > 0) {
+            jsonMetadata.set(LINKS_FIELD_NAME, linksArray);
+        }
+
+        jsonMetadata.put(APP_FIELD_NAME, app);
+        jsonMetadata.put(FORMAT_FIELD_NAME, format);
+
+        return jsonMetadata.toString();
+    }
+
+    /**
+     * Create a permlink string from the given <code>title</code>:
+     * <ol>
+     * <li>The title is trimmed and converted to lowercase</li>
+     * <li>Spaces are converted to hyphens</li>
+     * <li>Disallowed characters are removed</li>
+     * <li>Contiguous hyphens are replaced with a single hyphen</li>
+     * </ol>
+     *
+     * @param title
+     *            The string to convert
+     * @return The generated permlink
+     */
+    public static String createPermlinkString(String title) {
+        return title.trim().toLowerCase().replaceAll(" ", "-").replaceAll("[^a-z0-9-]+", "").replaceAll("-+", "-");
+    }
+=======
 	private static final String TAGS_FIELD_NAME = "tags";
 	private static final String USERS_FIELD_NAME = "users";
 	private static final String IMAGES_FIELD_NAME = "images";
@@ -139,4 +284,5 @@ public class CondenserUtils {
 			throw new RuntimeException("Unable to create JSON metadata string", e);
 		}
 	}
+>>>>>>> 0.4.x
 }
