@@ -147,7 +147,7 @@
 			</executions>
 				<configuration>
 					<failOnError>false</failOnError>
-					<failOnWarnings>false</failOnWarnings>
+					<!--<failOnWarnings>false</failOnWarnings>-->
 				</configuration>
 			</plugin>
 			<plugin>
@@ -175,6 +175,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
 				<configuration>
+					<!--suppress UnresolvedMavenProperty -->
 					<argLine>${failsafeArgLine}</argLine>
 					<reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
 					<groups>com.github.muksihs.steemj.IntegrationTest</groups>
@@ -193,6 +194,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
+					<!--suppress UnresolvedMavenProperty -->
 					<argLine>${surefireArgLine}</argLine>
 					<includes>
 						<include>**/*.*</include>
