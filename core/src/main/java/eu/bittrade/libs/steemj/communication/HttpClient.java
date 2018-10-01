@@ -59,6 +59,8 @@ public class HttpClient extends AbstractClient {
 
             LOGGER.debug("Sending {}.", requestPayload);
 
+            httpRequest.setReadTimeout(90000);
+
             HttpResponse httpResponse = httpRequest.execute();
 
             int status = httpResponse.getStatusCode();
