@@ -26,3 +26,7 @@ accountDetailsUsedDuringTests.properties
 /gradlew
 /gradlew.bat
 /settings.gradle
+/steemj-parent.iml
+/core/steemj-core.iml
+/sample/steemj-sample.iml
+steemj-sample.iml
