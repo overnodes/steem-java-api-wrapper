@@ -43,6 +43,8 @@ public class HttpClient extends AbstractClient {
                             ByteArrayContent.fromString("application/json", requestPayload));
 
             LOGGER.debug("Sending {}.", requestPayload);
+            // set ReadTimeout to broadcast Transaction
+            httpRequest.setReadTimeout(90000);
 
             HttpResponse httpResponse = httpRequest.execute();
 
