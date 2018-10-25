@@ -32,7 +32,7 @@ class BrainkeyDictionaryManager {
      *             If there is a problem loading the file.
      */
     private BrainkeyDictionaryManager() throws IOException {
-        FileReader fileReader = new FileReader(getClass().getClassLoader().getResource(DICTIONARY_FILE_NAME).getFile());
+        FileReader fileReader = new FileReader(getClass().getResource(DICTIONARY_FILE_NAME).getFile());
         try {
             this.brainKeyDictionary = IOUtils.toString(fileReader).split(DICTIONARY_DELIMITER);
         } finally {
