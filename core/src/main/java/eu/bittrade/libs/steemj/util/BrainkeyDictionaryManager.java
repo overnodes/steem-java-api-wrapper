@@ -3,6 +3,7 @@ package eu.bittrade.libs.steemj.util;
 import java.io.FileReader;
 import java.io.IOException;
 
+import java.io.InputStream;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,11 +33,11 @@ class BrainkeyDictionaryManager {
      *             If there is a problem loading the file.
      */
     private BrainkeyDictionaryManager() throws IOException {
-        FileReader fileReader = new FileReader(getClass().getResource(DICTIONARY_FILE_NAME).getFile());
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(DICTIONARY_FILE_NAME);
         try {
-            this.brainKeyDictionary = IOUtils.toString(fileReader).split(DICTIONARY_DELIMITER);
+            this.brainKeyDictionary = IOUtils.toString(inputStream).split(DICTIONARY_DELIMITER);
         } finally {
-            fileReader.close();
+            inputStream.close();
         }
     }
 
